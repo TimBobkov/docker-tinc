@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-tinc="/etc/tinc/"
+tinc="/etc/tinc"
 scripts="/etc/tinc/scripts"
 rm $tinc/tinc.conf
 crontab -d
