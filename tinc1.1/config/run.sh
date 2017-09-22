@@ -70,4 +70,4 @@ if [ ! -f $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/; fi
 if [ ! -f $tinc/tinc-down ]; then cp /etc/default/tinc-down $tinc/; fi
 chmod +x $tinc/tinc-*
 
-tinc start -D
+tinc start -D --logfile=/etc/tinc/log
