@@ -2,7 +2,7 @@ FROM debian:experimental
 
 RUN echo "deb http://http.debian.net/debian experimental main" >> /etc/apt/sources.list && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y net-tools && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y net-tools cron && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y -t experimental tinc && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

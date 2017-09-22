@@ -28,7 +28,7 @@ ENV ADDRESS=none \
 ENV VPN_IP=none
 
 RUN apt-get update && \
-    apt-get install -y net-tools tinc && \
+    apt-get install -y net-tools tinc cron && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD config/run.sh /etc/run.sh
