@@ -54,7 +54,7 @@ ENV ADDRESS=none \
 
 ENV VPN_IP="172.16.0.1"
 
-ADD config/run.sh /usr/sbin/tinc/run.sh
+ADD config/run.sh /usr/sbin/run.sh
 ADD config/tinc-* /etc/default/
 RUN chmod +x /usr/sbin/run.sh && \
     mkdir -p /etc/tinc/hosts && \
