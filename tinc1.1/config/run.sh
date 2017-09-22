@@ -13,10 +13,8 @@ if [ "$AUTO_CONNECT" != "none" ]; then tinc set AutoConnect $AUTO_CONNECT; fi
 if [ "$BIND_TO_ADDRESS" != "none" ]; then tinc set BindToAddress $BIND_TO_ADDRESS; fi
 if [ "$BROADCAST_SUBNET" != "none" ]; then tinc set BroadcastSubnet $BROADCAST_SUBNET; fi
 if [ "$CONNECT_TO" != "none" ]; then
-    i=1
-    while [ ! -z $(echo $CONNECT_TO | cut -f $i -d " ") ]; do
-        echo -n "ConnectTo = $(echo $CONNECT_TO | cut -f $i -d " ")" >> /etc/tinc/tinc.conf
-        let "i=$i+1"
+    for i in $CONNECT_TO; do
+        echo "ConnectTo = $i" >> $tinc/tinc.conf
     done
 fi
 if [ "$DEVICE" != "none" ]; then tinc set Device $DEVICE; fi
