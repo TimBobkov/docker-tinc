@@ -54,10 +54,10 @@ ENV ADDRESS=none \
 
 ENV VPN_IP="172.16.0.1"
 
+RUN mkdir -p /usr/sbin/tinc
 ADD config/run.sh /usr/sbin/tinc/run.sh
-ADD config/tinc-* /etc/tinc/
-RUN chmod +x /usr/sbin/tinc/run.sh && \
-    chmod +x /etc/tinc/tinc-* && \
+ADD config/tinc-* /etc/default/
+RUN chmod +x /usr/sbin/run.sh && \
     mkdir -p /etc/tinc/hosts && \
     mkdir -p /usr/tinc-cron/scripts
 
@@ -65,5 +65,5 @@ EXPOSE 655/tcp 655/udp
 
 VOLUME /etc/tinc
 
-ENTRYPOINT ["/usr/sbin/tinc"]
+ENTRYPOINT ["/usr/sbin/"]
 CMD ["run.sh"]
