@@ -31,6 +31,8 @@ if [ -f $hosts/$NODENAME ]; then
     sed -i "/$PMTU_DISCOVERY/d" $hosts/$NODENAME
     sed -i "/$SUBNET/d" $hosts/$NODENAME
     sed -i "/$PORT/d" $hosts/$NODENAME
+else
+    echo "\n\n" | tincd -K4096
 fi
 if [ "$ADDRESS" != "none" ]; then echo "Address = $ADDRESS" >> $hosts/$NODENAME; fi
 if [ "$CIPHER" != "none" ]; then echo "Cipher = $CIPHER" >> $hosts/$NODENAME; fi
@@ -43,7 +45,6 @@ if [ "$PMTU" != "none" ]; then echo "PMTU = $PMTU" >> $hosts/$NODENAME; fi
 if [ "$PMTU_DISCOVERY" != "none" ]; then echo "PMTUDiscovery = $PMTU_DISCOVERY" >> $hosts/$NODENAME; fi
 if [ "$SUBNET" != "none" ]; then echo "Subnet = $SUBNET" >> $hosts/$NODENAME; fi
 if [ "$PORT" != "none" ]; then echo "Port = $PORT" >> $hosts/$NODENAME; fi
-echo "\n\n" | tincd -K4096
 
 dir=/usr/cron
 filecount=`find $dir -type f -not -path "$dir/.*" -not -type d | wc -l`
