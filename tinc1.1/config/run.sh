@@ -2,9 +2,6 @@
 
 tinc="/etc/tinc/"
 scripts="/etc/tinc/scripts"
-mkdir -p $tinc/hosts
-rm $tinc/tinc.conf
-rm $tinc/hosts/$NODENAME
 crontab -d
 
 if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; fi
