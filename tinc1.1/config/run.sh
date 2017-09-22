@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
 tinc="/etc/tinc/"
+scripts="/etc/tinc/scripts"
 mkdir -p $tinc/hosts
 rm $tinc/tinc.conf
 rm $tinc/hosts/$NODENAME
 crontab -d
 
-if [ ! -f $tinc/hosts/$NODENAME ]; then
-    tinc init $NODENAME
-    rm $tinc/tinc-*
-fi
+if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; fi
 if [ "$ADDRESS_FAMILY" != "none" ]; then tinc set AddressFamily $ADDRESS_FAMILY; fi
 if [ "$AUTO_CONNECT" != "none" ]; then tinc set AutoConnect $AUTO_CONNECT; fi
 if [ "$BIND_TO_ADDRESS" != "none" ]; then tinc set BindToAddress $BIND_TO_ADDRESS; fi
@@ -69,8 +67,12 @@ if [ $filecount -gt "0" ]; then
     done
 fi
 
-if [ ! -f $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/; fi
-if [ ! -f $tinc/tinc-down ]; then cp /etc/default/tinc-down $tinc/; fi
-chmod +x $tinc/tinc-*
+vars=`cat $scripts`
+for i in $vars; do
+    if [ -f $scripts/$i ]; then
+        cp $scripts/$i $tinc/$i
+        chmod +x $tinc/$i
+    fi
+done
 
 tinc start -D --logfile=/etc/tinc/log

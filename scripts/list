@@ -1,0 +1,10 @@
+tinc-up
+tinc-down
+host-up
+host-down
+subnet-up
+subnet-down
+invitation-create
+invitation-accepted
+hosts/host-up
+hosts/host-down

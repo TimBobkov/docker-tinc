@@ -17,7 +17,8 @@ services:
       - LOG_LEVEL=3
       - MODE=switch
     volumes:
-      - ./config:/etc/tinc
+      - ./config/hosts:/etc/tinc/hosts
+      - ./scripts:/etc/tinc/scripts
     ports:
       - 655/tcp
       - 655/udp
