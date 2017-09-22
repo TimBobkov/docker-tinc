@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 tinc="/etc/tinc"
 hosts="$tinc/hosts"
+mkdir -p $hosts
 
 crontab -d
 

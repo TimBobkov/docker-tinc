@@ -1,0 +1,20 @@
+version: '2'
+services:
+  tinc:
+    image: timbobkov/tinc1.0
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    environment:
+      - NODENAME=node0
+      - INTERFACE=tun0
+      - ADDRESS_FAMILY=ipv4
+      - ADDRESS=192.168.43.190
+    volumes:
+      - ./config:/etc/tinc
+    ports:
+      - 655/tcp
+      - 655/udp
+    network_mode: host
+    container_name: tinc
