@@ -2,7 +2,6 @@
 
 tinc=/etc/tinc
 scripts=/etc/tinc/scripts
-if [ -f $tinc/tinc.conf ]; then rm $tinc/tinc.conf; fi
 crontab -r
 
 if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; else echo "$tinc/hosts/$NODENAME exist"; fi
