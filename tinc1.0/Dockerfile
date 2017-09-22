@@ -32,9 +32,8 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD config/run.sh /etc/run.sh
-ADD config/tinc-* /etc/tinc/
+ADD config/tinc-* /etc/default/
 RUN chmod +x /etc/run.sh && \
-    chmod +x /etc/tinc/tinc-* && \
     mkdir -p /etc/tinc/hosts && \
     mkdir -p /usr/cron/scripts
 
