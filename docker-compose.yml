@@ -1,7 +1,7 @@
 version: '2'
 services:
   tinc:
-    image: timbobkov/tinc1.0
+    image: timbobkov/tinc:1.1
     cap_add:
       - NET_ADMIN
     devices:
@@ -13,6 +13,9 @@ services:
       - ADDRESS=192.168.43.190
       - SUBNET=172.16.0.0/24
       - VPN_IP=172.16.0.1
+      - AUTO_CONNECT=yes
+      - LOG_LEVEL=3
+      - MODE=switch
     volumes:
       - ./config:/etc/tinc
     ports:
