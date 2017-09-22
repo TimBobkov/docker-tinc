@@ -45,5 +45,5 @@ if [ ! $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/tinc-up; fi
 if [ ! $tinc/tinc-down ]; then cp  /etc/default/tinc-down $tinc/tinc-down; fi
 chmod +x $tinc/tinc-*
 
-tincd -D
+tincd -D --logfile=/etc/tinc/tinc.log
 
