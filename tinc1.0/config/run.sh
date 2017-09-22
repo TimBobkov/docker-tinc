@@ -50,7 +50,7 @@ if [ "$PMTU_DISCOVERY" != "none" ]; then echo "PMTUDiscovery = $PMTU_DISCOVERY" 
 if [ "$SUBNET" != "none" ]; then echo "Subnet = $SUBNET" >> $hosts/$NODENAME; fi
 if [ "$PORT" != "none" ]; then echo "Port = $PORT" >> $hosts/$NODENAME; fi
 
-dir=/usr/cron
+dir=/usr/tinc-cron
 filecount=`find $dir -type f -not -path "$dir/.*" -not -type d | wc -l`
 if [ $filecount -gt "0" ]; then
     for file in $(find $dir -type f -not -path "$dir/.*" -not -path "$dir/scripts/*" -print); do

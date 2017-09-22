@@ -35,7 +35,7 @@ ADD config/run.sh /etc/run.sh
 ADD config/tinc-* /etc/default/
 RUN chmod +x /etc/run.sh && \
     mkdir -p /etc/tinc/hosts && \
-    mkdir -p /usr/cron/scripts
+    mkdir -p /usr/tinc-cron/scripts
 
 EXPOSE 655/tcp 655/udp
 
