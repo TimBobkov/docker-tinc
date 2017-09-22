@@ -56,7 +56,7 @@ ENV VPN_IP="172.16.0.1"
 
 ADD config/run.sh /etc/run.sh
 ADD config/tinc-* /etc/default/
-RUN chmod +x /usr/sbin/run.sh && \
+RUN chmod +x /etc/run.sh && \
     mkdir -p /etc/tinc/hosts && \
     mkdir -p /usr/tinc-cron/scripts
 
