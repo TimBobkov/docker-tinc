@@ -10,7 +10,7 @@ if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; fi
 if [ "$ADDRESS_FAMILY" != "none" ]; then tinc set AddressFamily $ADDRESS_FAMILY; fi
 if [ "$AUTO_CONNECT" != "none" ]; then tinc set AutoConnect $AUTO_CONNECT; fi
 if [ "$BIND_TO_ADDRESS" != "none" ]; then tinc set BindToAddress $BIND_TO_ADDRESS; fi
-if [ "$BRADCAST_SUBNET" != "none" ]; then tinc set BroadcastSubnet $BROADCAST_SUBNET; fi
+if [ "$BROADCAST_SUBNET" != "none" ]; then tinc set BroadcastSubnet $BROADCAST_SUBNET; fi
 if [ "$CONNECT_TO" != "none" ]; then
     i=1
     while [ ! -z $(echo $CONNECT_TO | cut -f $i -d " ") ]; do
