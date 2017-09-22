@@ -6,7 +6,7 @@ rm $tinc/tinc.conf
 rm $tinc/hosts/$NODENAME
 crontab -d
 
-tinc init $NODENAME
+if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; fi
 if [ "$ADDRESS_FAMILY" != "none" ]; then tinc set AddressFamily $ADDRESS_FAMILY; fi
 if [ "$AUTO_CONNECT" != "none" ]; then tinc set AutoConnect $AUTO_CONNECT; fi
 if [ "$BIND_TO_ADDRESS" != "none" ]; then tinc set BindToAddress $BIND_TO_ADDRESS; fi

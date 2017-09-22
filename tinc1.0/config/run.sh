@@ -19,7 +19,19 @@ if [ "$MAX_TIMEOUT" != "none" ]; then echo "MaxTimeout = $MAX_TIMEOUT" >> $tinc/
 if [ "$PING_INTERVAL" != "none" ]; then echo "PingInterval = $PING_INTERVAL" >> $tinc/tinc.conf; fi
 if [ "$PING_TIMEOUT" != "none" ]; then echo "PingTimeout = $PING_TIMEOUT" >> $tinc/tinc.conf; fi
 
-if [ -f $hosts/$NODENAME ]; then rm $hosts/$NODENAME; fi
+if [ -f $hosts/$NODENAME ]; then
+    sed -i "/$ADDRESS/d" $hosts/$NODENAME
+    sed -i "/$CIPHER/d" $hosts/$NODENAME
+    sed -i "/$CLAMP_MSS/d" $hosts/$NODENAME
+    sed -i "/$COMPRESSION/d" $hosts/$NODENAME
+    sed -i "/$DIGEST/d" $hosts/$NODENAME
+    sed -i "/$INDIRECT_DATA/d" $hosts/$NODENAME
+    sed -i "/$MAC_LENGTH/d" $hosts/$NODENAME
+    sed -i "/$PMTU/d" $hosts/$NODENAME
+    sed -i "/$PMTU_DISCOVERY/d" $hosts/$NODENAME
+    sed -i "/$SUBNET/d" $hosts/$NODENAME
+    sed -i "/$PORT/d" $hosts/$NODENAME
+fi
 if [ "$ADDRESS" != "none" ]; then echo "Address = $ADDRESS" >> $hosts/$NODENAME; fi
 if [ "$CIPHER" != "none" ]; then echo "Cipher = $CIPHER" >> $hosts/$NODENAME; fi
 if [ "$CLAMP_MSS" != "none" ]; then echo "ClampMSS = $CLAMP_MSS" >> $hosts/$NODENAME; fi
@@ -42,7 +54,7 @@ if [ $filecount -gt "0" ]; then
 fi
 
 if [ ! -f $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/; fi
-if [ ! -f $tinc/tinc-down ]; then cp  /etc/default/tinc-down $tinc/; fi
+if [ ! -f $tinc/tinc-down ]; then cp /etc/default/tinc-down $tinc/; fi
 chmod +x $tinc/tinc-*
 
 tincd -D --logfile=/etc/tinc/tinc.log -d 3
