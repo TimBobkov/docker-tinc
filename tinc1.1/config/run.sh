@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-tinc="/etc/tinc"
-scripts="/etc/tinc/scripts"
-rm $tinc/tinc.conf
-crontab -d
+tinc=/etc/tinc
+scripts=/etc/tinc/scripts
+if [ -f $tinc/tinc.conf ]; then rm $tinc/tinc.conf; fi
+crontab -r
 
-if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; fi
+if [ ! -f $tinc/hosts/$NODENAME ]; then tinc init $NODENAME; else echo "$tinc/hosts/$NODENAME exist"; fi
 if [ "$ADDRESS_FAMILY" != "none" ]; then tinc set AddressFamily $ADDRESS_FAMILY; fi
 if [ "$AUTO_CONNECT" != "none" ]; then tinc set AutoConnect $AUTO_CONNECT; fi
 if [ "$BIND_TO_ADDRESS" != "none" ]; then tinc set BindToAddress $BIND_TO_ADDRESS; fi
@@ -55,7 +55,7 @@ if [ "$SUBNET" != "none" ]; then tinc set $NODENAME.Subnet $SUBNET; fi
 if [ "$TCP_ONLY" != "none" ]; then tinc set $NODENAME.TCPOnly $TCP_ONLY; fi
 if [ "$WEIGHT" != "none" ]; then tinc set $NODENAME.Weight $WEIGHT; fi
 
-dir=/usr/cron
+dir=/usr/tinc-cron
 filecount=`find $dir -type f -not -path "$dir/.*" -not -type d | wc -l`
 if [ $filecount -gt "0" ]; then
     for file in $(find $dir -type f -not -path "$dir/.*" -not -path "$dir/scripts/*" -print); do
