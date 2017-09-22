@@ -12,6 +12,7 @@ services:
       - ADDRESS_FAMILY=ipv4
       - ADDRESS=192.168.43.190
       - SUBNET=172.16.0.0/24
+      - VPN_IP=172.16.0.1
     volumes:
       - ./config:/etc/tinc
     ports:
