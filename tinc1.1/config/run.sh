@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 tinc="/etc/tinc/"
 scripts="/etc/tinc/scripts"
