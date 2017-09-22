@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 tinc="/etc/tinc"
 hosts="$tinc/hosts"
 mkdir -p $hosts

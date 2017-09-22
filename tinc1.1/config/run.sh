@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 tinc="/etc/tinc/"
 scripts="/etc/tinc/scripts"
@@ -67,7 +67,7 @@ if [ $filecount -gt "0" ]; then
     done
 fi
 
-vars=`cat $scripts`
+vars=`cat $scripts/list`
 for i in $vars; do
     if [ -f $scripts/$i ]; then
         cp $scripts/$i $tinc/$i
