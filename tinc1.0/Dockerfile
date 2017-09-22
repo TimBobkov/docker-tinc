@@ -13,7 +13,7 @@ ENV NODENAME=default \
     MAX_TIMEOUT=none \
     PING_INTERVAL=none \
     PING_TIMEOUT=none
-ENV EXT_IP=none \
+ENV ADDRESS=none \
     CIPHER=none \
     CLAMP_MSS=none \
     COMPRESSION=none \
@@ -25,16 +25,20 @@ ENV EXT_IP=none \
     SUBNET=none \
     PORT=none
 
+ENV VPN_IP=none
+
 RUN apt-get update && \
     apt-get install -y net-tools tinc && \
-    apt-get clean
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD config/run.sh /etc/run.sh
+ADD config/tinc-* /etc/tinc/
 RUN chmod +x /etc/run.sh && \
+    chmod +x /etc/tinc/tinc-* && \
     mkdir -p /etc/tinc/hosts && \
     mkdir -p /usr/cron/scripts
 
-EXPOSE 655
+EXPOSE 655/tcp 655/udp
 
 VOLUME /etc/tinc /usr/cron
 

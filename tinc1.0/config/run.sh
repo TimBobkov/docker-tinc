@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 tinc="/etc/tinc"
 hosts="$tinc/hosts"
+
+crontab -d
+
 echo "Name = $NODENAME" > $tinc/tinc.conf
 if [ "$MODE" != "none" ]; then echo "Mode = $MODE" >> $tinc/tinc.conf; fi
 if [ "$INTERFACE" != "none" ]; then echo "Interface = $INTERFACE" >> $tinc/tinc.conf; fi
@@ -16,7 +19,7 @@ if [ "$PING_INTERVAL" != "none" ]; then echo "PingInterval = $PING_INTERVAL" >> 
 if [ "$PING_TIMEOUT" != "none" ]; then echo "PingTimeout = $PING_TIMEOUT" >> $tinc/tinc.conf; fi
 
 if [ -f $hosts/$NODENAME ]; then rm $hosts/$NODENAME; fi
-if [ "$EXT_IP" != "none" ]; then echo "Address = $EXT_IP" >> $hosts/$NODENAME; fi
+if [ "$ADDRESS" != "none" ]; then echo "Address = $ADDRESS" >> $hosts/$NODENAME; fi
 if [ "$CIPHER" != "none" ]; then echo "Cipher = $CIPHER" >> $hosts/$NODENAME; fi
 if [ "$CLAMP_MSS" != "none" ]; then echo "ClampMSS = $CLAMP_MSS" >> $hosts/$NODENAME; fi
 if [ "$COMPRESSION" != "none" ]; then echo "Compression = $COMPRESSION" >> $hosts/$NODENAME; fi
@@ -29,7 +32,6 @@ if [ "$SUBNET" != "none" ]; then echo "Subnet = $SUBNET" >> $hosts/$NODENAME; fi
 if [ "$PORT" != "none" ]; then echo "Port = $PORT" >> $hosts/$NODENAME; fi
 echo "\n\n" | tincd -K4096
 
-crontab -d
 dir=/usr/cron
 filecount=`find $dir -type f -not -path "$dir/.*" -not -type d | wc -l`
 if [ $filecount -gt "0" ]; then
@@ -38,5 +40,5 @@ if [ $filecount -gt "0" ]; then
     done
 fi
 
-tincd
+tincd -D
 
