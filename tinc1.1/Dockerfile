@@ -64,5 +64,4 @@ EXPOSE 655/tcp 655/udp
 
 VOLUME /etc/tinc
 
-ENTRYPOINT ["/usr/sbin/tinc"]
 CMD ["/etc/run.sh"]
