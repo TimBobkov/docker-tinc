@@ -41,8 +41,8 @@ if [ $filecount -gt "0" ]; then
     done
 fi
 
-if [ ! $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/; fi
-if [ ! $tinc/tinc-down ]; then cp  /etc/default/tinc-down $tinc/; fi
+if [ ! -f $tinc/tinc-up ]; then cp /etc/default/tinc-up $tinc/; fi
+if [ ! -f $tinc/tinc-down ]; then cp  /etc/default/tinc-down $tinc/; fi
 chmod +x $tinc/tinc-*
 
 tincd -D --logfile=/etc/tinc/tinc.log -d 3
