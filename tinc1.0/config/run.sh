@@ -9,7 +9,11 @@ echo "Name = $NODENAME" > $tinc/tinc.conf
 if [ "$MODE" != "none" ]; then echo "Mode = $MODE" >> $tinc/tinc.conf; fi
 if [ "$INTERFACE" != "none" ]; then echo "Interface = $INTERFACE" >> $tinc/tinc.conf; fi
 if [ "$ADDRESS_FAMILY" != "none" ]; then echo "AddressFamily = $ADDRESS_FAMILY" >> $tinc/tinc.conf; fi
-if [ "$MAIN_NODE" != "none" ]; then echo "ConnectTo = $MAIN_NODE" >> $tinc/tinc.conf; fi
+if [ "$CONNECT_TO" != "none" ]; then
+    for i in $CONNECT_TO; do
+        echo "ConnectTo = $i" >> $tinc/tinc.conf
+    done
+fi
 if [ "$DEVICE" != "none" ]; then echo "Device = $DEVICE" >> $tinc/tinc.conf; fi
 if [ "$DEVICE_TYPE" != "none" ]; then echo "DeviceType = $DEVICE_TYPE" >> $tinc/tinc.conf; fi
 if [ "$HOSTNAMES" != "none" ]; then echo "Hostnames = $HOSTNAMES" >> $tinc/tinc.conf; fi
