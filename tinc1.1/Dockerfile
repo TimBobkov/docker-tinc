@@ -61,6 +61,4 @@ RUN chmod +x /etc/run.sh && \
 
 EXPOSE 655/tcp 655/udp
 
-VOLUME /etc/tinc/hosts /etc/tinc/scripts /usr/tinc-cron
-
 CMD ["/etc/run.sh"]
