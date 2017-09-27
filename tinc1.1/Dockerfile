@@ -2,7 +2,7 @@ FROM debian:experimental
 
 RUN echo "deb http://http.debian.net/debian experimental main" >> /etc/apt/sources.list && \
     apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y net-tools cron && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y net-tools cron sshpass && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y -t experimental tinc && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -52,7 +52,8 @@ ENV ADDRESS=none \
     TCP_ONLY=none \
     WEIGHT=none
 
-ENV VPN_IP="172.16.0.1"
+ENV VPN_IP="172.16.0.1" \
+    SSH_PASS=none
 
 ADD config/run.sh /etc/run.sh
 RUN chmod +x /etc/run.sh && \

@@ -25,10 +25,11 @@ ENV ADDRESS=none \
     SUBNET=none \
     PORT=none
 
-ENV VPN_IP=none
+ENV VPN_IP=none \
+    SSH_PASS=none
 
 RUN apt-get update && \
-    apt-get install -y net-tools tinc cron && \
+    apt-get install -y net-tools tinc cron sshpass && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD config/run.sh /etc/run.sh
