@@ -1,7 +1,7 @@
 version: '2'
 services:
   tinc:
-    image: timbobkov/tinc:1.1
+    image: timbobkov/docker-tinc:1.1
     cap_add:
       - NET_ADMIN
     devices:
